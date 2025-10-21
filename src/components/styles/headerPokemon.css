@@ -1,0 +1,137 @@
+.header-pokemon {
+  background: linear-gradient(180deg, var(--colorAppPrimary) 0%, var(--colorAppPrimary) 100%);
+  padding: 0.75rem 0.75rem 1.5rem;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.pokeball-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-text {
+  color: white;
+  font-size: var(--headline-size);
+  line-height: var(--headline-line-height);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+  font-family: var(--font-family);
+}
+
+/* Search Section */
+.search-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.search-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    color: var(--colorAppPrimary);
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: var(--body-1-size);
+  line-height: var(--body-1-line-height);
+  font-weight: 400;
+  background-color: white;
+  color: #1D1D1D;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #666;
+  font-size: var(--body-1-size);
+  line-height: var(--body-1-line-height);
+  font-weight: 400;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.filter-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-button-filter{
+  width: 25px;
+  height: 25px;
+  filter: invert(9%) sepia(100%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(117%);
+}
+
+.filter-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.filter-button:active {
+  transform: scale(0.95);
+}
+
+.filter-icon {
+  color: var(--colorAppPrimary);
+  /* Subtitle 1: Bold 14px/16px */
+  font-size: var(--subtitle-1-size);
+  line-height: var(--subtitle-1-line-height);
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .header-pokemon {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .search-icon {
+    left: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-pokemon {
+    padding: 2rem 3rem 2.5rem;
+  }
+}
