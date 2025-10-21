@@ -1,6 +1,28 @@
+:root {
+  --headline-size: 32px;
+  --headline-line-height: 36px;
+  --subtitle-1-size: 14px;
+  --subtitle-1-line-height: 16px;
+  --subtitle-2-size: 12px;
+  --subtitle-2-line-height: 14px;
+  --subtitle-3-size: 10px;
+  --subtitle-3-line-height: 12px;
+  --body-1-size: 14px;
+  --body-1-line-height: 16px;
+  --body-2-size: 12px;
+  --body-2-line-height: 16px;
+  --body-3-size: 10px;
+  --body-3-line-height: 16px;
+  --caption-size: 8px;
+  --caption-line-height: 12px;
+  --font-family: Poppins, sans-serif;
+  --colorAppPrimary: #DC0A2D;
+}
+
 * {
   padding: 0;
   margin: 0;
+  font-family: var(--font-family);
 }
 
 body {
