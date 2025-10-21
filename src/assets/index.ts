@@ -1,5 +1,5 @@
-import pokeball from './Pokeball.svg';
-import searchIcon from './SearchIcon.svg';
+import pokeball from './pokeball.svg';
+import searchIcon from './searchIcon.svg';
 import arrowBack from './arrow_back.svg';
 import weigthIcon from './weight.svg';
 import sortIcon from './sort.svg';
