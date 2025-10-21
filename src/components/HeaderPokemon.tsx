@@ -1,4 +1,4 @@
-import "./styles/HeaderPokemon.css";
+import "./styles/headerPokemon.css";
 import { vectorIcons } from "../assets/index";
 import { Fragment, useState } from "react";
 import SortMenu, { type SortOption } from "./SortMenu";
