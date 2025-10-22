@@ -11,7 +11,6 @@ export default function HeaderPokemon({ onSortChange }: HeaderPokemonProps) {
 
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState<SortOption>('number');
-  console.log("🚀 ~ HeaderPokemon ~ currentSort:", currentSort)
 
   const handleSortChange = (sortBy: SortOption) => {
     setCurrentSort(sortBy);

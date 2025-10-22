@@ -1,27 +1,35 @@
 import React from 'react';
 import './styles/cardsPokemon.css';
-import { Pokemon } from 'src/models/pokemon.interface';
+import { IPokemon } from 'src/models/pokemon.interface';
+import { useNavigate } from 'react-router-dom';
 
 interface CardsPokemonProps {
-  pokemons: Pokemon[];
+  pokemons: IPokemon[];
 }
 
 export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
-  const formatPokemonNumber = (id: number): string => {
-    return `#${id.toString().padStart(3, '0')}`;
-  };
 
+  const navigate = useNavigate()
+
+  const formatPokemonNumber = (id: number): string => {
+    return `#${id.toString().padStart(3, "0")}`
+  }
+
+  const handleCardClick = (id: number) => {
+    navigate(`/pokemon/${id}`)
+  }
+  
   return (
     <div className="cards-container">
       <div className="cards-grid">
         {pokemons.map((pokemon) => (
-          <div key={pokemon.id} className="pokemon-card">
+          <div key={pokemon.id} className="pokemon-card" onClick={() => handleCardClick(pokemon.id)}>
             <span className="pokemon-number">
               {formatPokemonNumber(pokemon.id)}
             </span>
             <div className="pokemon-image-container">
               <img 
-                src={pokemon.image || "/placeholder.svg"} 
+                src={pokemon.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork'].front_default || "/placeholder.svg"} 
                 alt={pokemon.name}
                 className="pokemon-image"
               />

@@ -6,6 +6,16 @@
   flex-direction: column; overflow: auto;
 }
 
+.background-pokeball{
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  opacity: 0.1;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
 .pokemon-detail-header{
   display: flex;
   flex-direction: column;
@@ -27,14 +37,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .nav-button:hover {
   transform: scale(1.1);
-}
-
-.nav-button:active {
-  transform: scale(0.95);
 }
 
 .back-button {
@@ -213,7 +220,7 @@
 
 @media (max-width: 750px) or (max-height: 550px) {
   .pokemon-detail-image{
-    width: 30%;
+    
     min-width: 150px;
     max-width: 250px;
   }
