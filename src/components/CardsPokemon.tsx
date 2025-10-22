@@ -4,9 +4,10 @@ import { Pokemon } from 'src/models/pokemon.interface';
 
 interface CardsPokemonProps {
   pokemons: Pokemon[];
+  onClick?: (pokemon: Pokemon) => void;
 }
 
-export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
+export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons, onClick }) => {
   const formatPokemonNumber = (id: number): string => {
     return `#${id.toString().padStart(3, '0')}`;
   };
@@ -15,13 +16,13 @@ export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
     <div className="cards-container">
       <div className="cards-grid">
         {pokemons.map((pokemon) => (
-          <div key={pokemon.id} className="pokemon-card">
+          <div key={pokemon.id} className="pokemon-card" onClick={() => onClick?.(pokemon)}>
             <span className="pokemon-number">
               {formatPokemonNumber(pokemon.id)}
             </span>
             <div className="pokemon-image-container">
               <img 
-                src={pokemon.image || "/placeholder.svg"} 
+                src={pokemon.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork'].front_default || "/placeholder.svg"} 
                 alt={pokemon.name}
                 className="pokemon-image"
               />
