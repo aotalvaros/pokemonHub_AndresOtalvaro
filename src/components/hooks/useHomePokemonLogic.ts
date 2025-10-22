@@ -1,9 +1,10 @@
 import { SortOption } from "@components/SortMenu";
+import { NumberPokemontosee } from "@constants/numberPokemontosee";
 import { usePokemons } from "@hooks/usePokemons";
 import { useSearchPokemons } from "@hooks/useSearchPokemons";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const INITIAL_POKEMON_LIMIT = 20;
 const SEARCH_MIN_LENGTH = 3;
 
 export const useHomePokemonLogic = () => {
@@ -12,7 +13,9 @@ export const useHomePokemonLogic = () => {
   const [searchInputValue, setSearchInputValue] = useState("")
   const searchType = sortBy === "name" ? "name" : "number"
 
-  const { isLoading: isLoadingAll, pokemonData } = usePokemons(INITIAL_POKEMON_LIMIT, 0);
+  const navigate = useNavigate()
+
+  const { isLoading: isLoadingAll, pokemonData } = usePokemons(NumberPokemontosee.HOME_POKEMONS, 0);
   const { isLoading: isSearching, searchResults } = useSearchPokemons(
     searchTerm, 
     searchType,
@@ -59,6 +62,7 @@ export const useHomePokemonLogic = () => {
     hasSearchTerm,
     searchInputValue,
 
+    navigate,
     setSortBy,
     setSearchTerm,
     handleSortChange,

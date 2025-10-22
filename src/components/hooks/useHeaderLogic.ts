@@ -4,8 +4,8 @@ import { SortOption } from '@components/SortMenu';
 import { validatePokemonSearch, type SearchType } from '@utils/validatePokemonSearch';
 
 interface UseHeaderLogicProps {
-  searchValue: string;
-  onInputChange: (value: string) => void;
+  searchValue?: string;
+  onInputChange?: (value: string) => void;
   onSearchChange?: (searchTerm: string) => void;
   sort?: SortOption;
 }
@@ -26,7 +26,6 @@ export const useHeaderLogic = ({
     setIsSortMenuOpen(prev => !prev);
   }, []);
 
-
   const closeValidationPopup = useCallback(() => {
     setShowValidationPopup(false);
   }, []);
@@ -44,14 +43,14 @@ export const useHeaderLogic = ({
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const searchType: SearchType = sort === "name" ? "name" : "number"
-      const validation = validatePokemonSearch(searchValue, searchType)
+      const validation = validatePokemonSearch(searchValue ?? "", searchType)
 
       if (!validation.isValid && validation.error) {
         showValidationError(validation.error);
         onSearchChange?.("");
       } else {
-        const processedValue = searchType === "number" ? searchValue.trim() : searchValue.trim().toLowerCase()
-        onSearchChange?.(processedValue)
+        const processedValue = searchType === "number" ? searchValue?.trim() : searchValue?.trim().toLowerCase() 
+        onSearchChange?.(processedValue ?? "")
       }
     }
   }, [searchValue, onSearchChange, showValidationError]);

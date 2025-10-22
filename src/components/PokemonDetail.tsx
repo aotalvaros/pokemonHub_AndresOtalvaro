@@ -2,6 +2,9 @@ import React from 'react';
 import './styles/pokemondetailStyle.css';
 import { PokemonDetailProps } from '@models/pokemon.interface';
 import vectorIcons from '@assets/index';
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useFavorites } from '@context/FavoritesContext';
 
 export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   id,
@@ -18,6 +21,10 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   onPrevious,
   onNext,
 }) => {
+  console.log("🚀 ~ PokemonDetail ~ id:", id)
+
+  const { isFavorite, toggleFavorite } = useFavorites()
+
   const formatPokemonNumber = (id: number): string => {
     return `#${id.toString().padStart(3, '0')}`;
   };
@@ -29,6 +36,11 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   const formatHeight = (height: number): string => {
     return `${(height / 10).toFixed(1)} m`;
   };
+
+   const handleFavoriteClick = (e: React.MouseEvent, pokemonId: number) => {
+      e.stopPropagation()
+      toggleFavorite(pokemonId)
+    }
 
   return (
     <div className="pokemon-detail" style={{ backgroundColor: themeColor }}>
@@ -51,7 +63,9 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
               className="back-icon"
             />
           </button>
-          
+          <IconButton aria-label="delete" className={`${isFavorite(id) ? "favorite-check" : "favorite-icon"} btn-favorite`} onClick={(e) => handleFavoriteClick(e, id)} >
+            <FavoriteIcon />
+          </IconButton>
           <div className="header-title">
             <h1 className="pokemon-detail-name">{name}</h1>
             <span className="pokemon-detail-number">
@@ -113,7 +127,6 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
       </div>
 
       <div className="pokemon-detail-content">
-        
         <div className="type-badges">
           {types.map((type, index) => (
             <span 

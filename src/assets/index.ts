@@ -7,6 +7,7 @@ import textFormatIcon from "./textFormat.svg";
 import tagIcon from "./tag.svg";
 import pokeball2 from "./pokeballBack.svg";
 
+
 const vectorIcons = {
     pokeball,
     searchIcon,
@@ -15,7 +16,8 @@ const vectorIcons = {
     sortIcon,
     textFormatIcon,
     tagIcon,
-    pokeball2
+    pokeball2,
+
 }
 
 export default vectorIcons;
