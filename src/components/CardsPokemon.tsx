@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/cardsPokemon.css';
-import { IPokemon } from 'src/models/pokemon.interface';
 import { useNavigate } from 'react-router-dom';
+import { IPokemon } from '@models/pokemon.interface';
 
 interface CardsPokemonProps {
   pokemons: IPokemon[];

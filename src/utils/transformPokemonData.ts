@@ -1,4 +1,4 @@
-import { IPokemon } from "src/models/pokemon.interface"
+import { IPokemon } from "../models/pokemon.interface"
 
 const typeColors: Record<string, string> = {
   grass: "#74CB48",

@@ -24,7 +24,14 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@assets/*": ["src/assets/*"],
+      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@constants/*": ["src/constants/*"],
+      "@context/*": ["src/context/*"],
+      "@models/*": ["src/models/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "types": ["jest", "node"],
