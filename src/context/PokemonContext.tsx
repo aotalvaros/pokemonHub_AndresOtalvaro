@@ -34,6 +34,7 @@ export const PokemonProvider: React.FC<{ children: ReactNode }> = ({ children })
   return <PokemonContext.Provider value={{ pokemons, addPokemons, getPokemon }}>{children}</PokemonContext.Provider>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePokemonContext = () => {
   const context = useContext(PokemonContext)
   if (!context) {
