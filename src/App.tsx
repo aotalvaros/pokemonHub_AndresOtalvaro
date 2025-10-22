@@ -1,6 +1,11 @@
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Home } from './pages/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { PokemonDetailPage } from './pages/PokemonDetailPage';
+import { PokemonProvider } from './context/PokemonContext';
 
+const queryClient = new QueryClient();
 
 function App() {
   // const examplePokemon = {
@@ -30,10 +35,16 @@ function App() {
   // };
   
   return (
-    <>
-      <Home />
-      {/* <PokemonDetail {...examplePokemon} /> */}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <PokemonProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pokemon/:id" element={<PokemonDetailPage/>} />
+          </Routes>
+        </BrowserRouter>
+      </PokemonProvider>
+    </QueryClientProvider>
   )
 }
 

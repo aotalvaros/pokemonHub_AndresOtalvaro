@@ -1,22 +1,29 @@
 import React from 'react';
 import './styles/cardsPokemon.css';
-import { Pokemon } from 'src/models/pokemon.interface';
+import { IPokemon } from 'src/models/pokemon.interface';
+import { useNavigate } from 'react-router-dom';
 
 interface CardsPokemonProps {
-  pokemons: Pokemon[];
-  onClick?: (pokemon: Pokemon) => void;
+  pokemons: IPokemon[];
 }
 
-export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons, onClick }) => {
-  const formatPokemonNumber = (id: number): string => {
-    return `#${id.toString().padStart(3, '0')}`;
-  };
+export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
 
+  const navigate = useNavigate()
+
+  const formatPokemonNumber = (id: number): string => {
+    return `#${id.toString().padStart(3, "0")}`
+  }
+
+  const handleCardClick = (id: number) => {
+    navigate(`/pokemon/${id}`)
+  }
+  
   return (
     <div className="cards-container">
       <div className="cards-grid">
         {pokemons.map((pokemon) => (
-          <div key={pokemon.id} className="pokemon-card" onClick={() => onClick?.(pokemon)}>
+          <div key={pokemon.id} className="pokemon-card" onClick={() => handleCardClick(pokemon.id)}>
             <span className="pokemon-number">
               {formatPokemonNumber(pokemon.id)}
             </span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/pokemondetail.css';
+import './styles/pokemondetailStyle.css';
 import { PokemonDetailProps } from 'src/models/pokemon.interface';
 import { vectorIcons } from '../assets/index';
 
@@ -32,6 +32,11 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
 
   return (
     <div className="pokemon-detail" style={{ backgroundColor: themeColor }}>
+      <img 
+        src={vectorIcons.pokeball2} 
+        alt="Background Pokeball" 
+        className="background-pokeball"
+      />
       <div  className="pokemon-detail-header" >
         <div className="header-navigation">
           <button 
@@ -56,7 +61,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
         </div>
 
         <div className="header-image-container">
-          {onPrevious && (
+          {onPrevious ? (
             <button 
               className="nav-button" 
               onClick={onPrevious}
@@ -73,7 +78,9 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
                 />
               </svg>
             </button>
-          )}
+          )
+          : <div style={{ width: '40px' }}></div>
+        }
 
            <img 
             src={image || "/placeholder.svg"} 
@@ -82,7 +89,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
           />
 
 
-          {onNext && (
+          {onNext ? (
             <button 
               className="nav-button" 
               onClick={onNext}
@@ -99,7 +106,9 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
                 />
               </svg>
             </button>
-          )}
+          )
+          : <div style={{ width: '40px' }}></div>
+        }
         </div>
       </div>
 

@@ -1,16 +1,26 @@
-export interface Pokemon {
+export interface IPokemon {
   id:                        number;
   name:                      string;
   height:                    number;
   weight:                    number;
   pokemon_v2_pokemontypes:   PokemonV2Pokemontype[];
   pokemon_v2_pokemonsprites: PokemonV2Pokemonsprite[];
+  pokemon_v2_pokemonmoves:   IPokemonMoves[];
+  pokemon_v2_pokemonspecy?:  IPokemonV2Pokemonspecy;
+  pokemon_v2_pokemonstats?:  IPokemonV2Pokemonstat[];
 }
 
 export interface PokemonType {
   name: string;
   color: string;
+}export interface IPokemonV2Pokemonspecy {
+  pokemon_v2_pokemonspeciesflavortexts: PokemonV2Pokemonspeciesflavortext[];
 }
+
+export interface PokemonV2Pokemonspeciesflavortext {
+  flavor_text: string;
+}
+
 
 export interface PokemonStat {
   name: string;
@@ -158,3 +168,20 @@ export interface PokemonV2Pokemontype {
 export interface PokemonV2Type {
   name: string;
 }
+export interface IPokemonMoves {
+  pokemon_v2_move: PokemonV2Move;
+}
+
+export interface PokemonV2Move {
+  name: string;
+}
+
+export interface IPokemonV2Pokemonstat {
+  base_stat:       number;
+  pokemon_v2_stat: PokemonV2Stat;
+}
+
+export interface PokemonV2Stat {
+  name: string;
+}
+
