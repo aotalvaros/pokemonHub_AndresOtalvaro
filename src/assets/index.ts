@@ -1,11 +1,11 @@
-import pokeball from './pokeball.svg';
-import searchIcon from './searchIcon.svg';
-import arrowBack from './arrow_back.svg';
-import weigthIcon from './weight.svg';
-import sortIcon from './sort.svg';
-import textFormatIcon from './text_format.svg';
-import tagIcon from './tag.svg';
-import pokeball2 from './pokeball2.svg';
+import pokeball from "./pokeball.svg";
+import searchIcon from "./search.svg";
+import arrowBack from "./arrowBack.svg";
+import weigthIcon from "./weight.svg";
+import sortIcon from "./sort.svg";
+import textFormatIcon from "./textFormat.svg";
+import tagIcon from "./tag.svg";
+import pokeball2 from "./pokeballBack.svg";
 
 const vectorIcons = {
     pokeball,
