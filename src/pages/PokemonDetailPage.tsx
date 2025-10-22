@@ -8,7 +8,7 @@ import { usePokemonContext } from "../context/PokemonContext"
 import { transformPokemonData } from "../utils/transformPokemonData"
 import { IPokemon } from "../models/pokemon.interface"
 import { NumberPokemontosee } from "../constants/numberPokemontosee"
-import '../styles/pokemondetailpage.css'
+import '../styles/pokemonDetailPageStyle.css'
 
 interface GetPokemonResponse {
   pokemon_v2_pokemon: IPokemon[]
