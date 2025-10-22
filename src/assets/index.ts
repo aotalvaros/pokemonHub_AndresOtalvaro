@@ -18,4 +18,4 @@ const vectorIcons = {
     pokeball2
 }
 
-export { vectorIcons };
+export default vectorIcons;
