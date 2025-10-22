@@ -1,4 +1,4 @@
-import pokeball from "./pokeball.svg";
+import pokeball from "./iconPokeball.svg";
 import searchIcon from "./search.svg";
 import arrowBack from "./arrowBack.svg";
 import weigthIcon from "./weight.svg";
