@@ -4,14 +4,19 @@ import { Fragment } from "react";
 import SortMenu, { type SortOption } from "./SortMenu";
 import ValidationPopup from "./ValidationPopup";
 import { useHeaderLogic } from "./hooks/useHeaderLogic";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderPokemonProps {
-  searchValue: string
-  onInputChange: (value: string) => void
+  searchValue?: string
+  onInputChange?: (value: string) => void
   onSortChange?: (sortBy: SortOption) => void;
   onSearchChange?: (searchTerm: string) => void;
   disabled?: boolean;
-  sort?: SortOption
+  sort?: SortOption;
+  title?: string;
+  showBackButton?: boolean;
+  showSearch?: boolean;
+  showSort?: boolean;
 }
 
 export default function HeaderPokemon({
@@ -21,6 +26,10 @@ export default function HeaderPokemon({
   searchValue,
   onInputChange,
   sort,
+  showSearch = true,
+  showSort = true,
+  title = "Pokédex",
+  showBackButton = false,
 }: HeaderPokemonProps) {
 
   const {
@@ -44,20 +53,25 @@ export default function HeaderPokemon({
     sort,
   });
 
+  const navigate = useNavigate()
+
   return (
     <Fragment>
       <header className="header-pokemon">
         <div className="header-container">
           <div className="logo-section">
-            <img
-              src={vectorIcons.pokeball}
-              alt="Pokeball Icon"
-              className="pokeball-icon"
-            />
-            <h1 className="logo-text">Pokédex</h1>
+            {showBackButton ? (
+              <button className="back-button" onClick={() => navigate(-1)} aria-label="Volver">
+                <img src={vectorIcons.arrowBack} alt="Back" className="back-icon" />
+              </button>
+            ) : (
+              <img src={vectorIcons.pokeball} alt="Pokeball Icon" className="pokeball-icon" />
+            )}
+            <h1 className="logo-text">{title}</h1>
           </div>
 
-          <div className="search-container">
+{showSearch && showSort && (
+<div className="search-container">
             <div className="search-wrapper">
               <img
                 src={vectorIcons.searchIcon}
@@ -105,6 +119,8 @@ export default function HeaderPokemon({
               )}
             </button>
           </div>
+)}
+          
         </div>
       </header>
       <SortMenu

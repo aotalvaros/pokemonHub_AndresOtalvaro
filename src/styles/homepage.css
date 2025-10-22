@@ -58,6 +58,79 @@
   transform: translateY(0);
 }
 
+.favorites-banner {
+  margin: 10px 12px
+}
+
+.favorites-button {
+  width: 30%;
+  min-width: 200px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #888885 0%, #393737 100%);
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(100, 99, 94, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.favorites-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(144, 81, 75, 0.4);
+  background: linear-gradient(135deg, #8d5555 0%, #5c3131 100%);
+}
+
+.favorites-button:active {
+  transform: translateY(0);
+}
+
+.favorites-content {
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 0px 10px 5px;
+  background-color: #fff;
+  padding: 24px 12px;
+}
+
+.empty-favorites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.empty-message {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1d;
+  margin: 0;
+}
+
+.empty-hint {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.loading-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 24px;
+  font-size: 18px;
+  color: #6b7280;
+}
+
 @media (width >= 54rem ) {
   .cards-container-skeleton {
     grid-template-columns: repeat(3, minmax(0, 1fr));

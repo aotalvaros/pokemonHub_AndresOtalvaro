@@ -1,4 +1,4 @@
-/* Cards Container */
+
 .cards-container {
   padding: 1.5rem 1rem;
 }
@@ -9,7 +9,6 @@
   gap: 0.75rem;
 }
 
-/* Pokemon Card */
 .pokemon-card {
   background-color: white;
   border-radius: 16px;
@@ -32,7 +31,6 @@
   transform: translateY(-2px);
 }
 
-/* Pokemon Number */
 .pokemon-number {
     font-weight: 400;
     font-size: 16px;
@@ -44,7 +42,39 @@
     width: 100%;
 }
 
-/* Pokemon Image */
+.favorite-button {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  transition: transform 0.2s ease;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-button:hover {
+  transform: scale(1.15);
+}
+
+.favorite-button:active {
+  transform: scale(0.95);
+}
+
+.favorite-icon {
+  filter: brightness(0) saturate(100%) invert(59%) sepia(4%) saturate(6%) hue-rotate(352deg) brightness(98%) contrast(87%);
+}
+
+.favorite-check  {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(86%) saturate(3240%) hue-rotate(338deg) brightness(103%) contrast(90%);
+}
+
 .pokemon-image-container {
   aspect-ratio: 1;
   display: flex;
@@ -64,7 +94,7 @@
 
 .content-name{
     position: absolute;
-    background-color: #EFEFEF;
+    background-color: #efefef;
     height: 40%;
     width: 100%;
     border-radius: 17px;
