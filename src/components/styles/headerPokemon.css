@@ -50,11 +50,53 @@
 }
 
 .search-icon {
-    position: absolute;
-    color: var(--colorAppPrimary);
-    pointer-events: none;
-    width: 18px;
-    height: 18px;
+  position: absolute;
+  color: var(--colorAppPrimary);
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  left: 15px;
+}
+
+.search-badge {
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(23, 23, 27, 0.95);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  animation: fadeInBadge 0.2s ease-in-out;
+}
+
+.search-badge::after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 0.375rem solid transparent;
+  border-right: 0.375rem solid transparent;
+  border-top: 0.375rem solid rgba(23, 23, 27, 0.95);
+}
+
+@keyframes fadeInBadge {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .search-input {

@@ -1,0 +1,121 @@
+.validation-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.validation-popup {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.validation-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.validation-popup-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color:  var(--colorAppPrimary);
+}
+
+.validation-popup-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.validation-popup-close:hover {
+  background-color: #f3f4f6;
+}
+
+.validation-popup-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.validation-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.validation-popup-content p {
+  margin: 0;
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.validation-popup-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.validation-popup-button {
+  background-color:  var(--colorAppPrimary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.validation-popup-button:hover {
+  background-color: #b91c1c;
+}
+
+.validation-popup-button:active {
+  transform: scale(0.98);
+}

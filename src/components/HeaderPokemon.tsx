@@ -1,23 +1,48 @@
 import "./styles/headerPokemon.css";
 import vectorIcons from "@assets/index";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import SortMenu, { type SortOption } from "./SortMenu";
+import ValidationPopup from "./ValidationPopup";
+import { useHeaderLogic } from "./hooks/useHeaderLogic";
 
 interface HeaderPokemonProps {
+  searchValue: string
+  onInputChange: (value: string) => void
   onSortChange?: (sortBy: SortOption) => void;
+  onSearchChange?: (searchTerm: string) => void;
+  disabled?: boolean;
+  sort?: SortOption
 }
 
-export default function HeaderPokemon({ onSortChange }: HeaderPokemonProps) {
+export default function HeaderPokemon({
+  onSortChange,
+  onSearchChange,
+  disabled,
+  searchValue,
+  onInputChange,
+  sort,
+}: HeaderPokemonProps) {
 
-  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
-  const [currentSort, setCurrentSort] = useState<SortOption>('number');
-
-  const handleSortChange = (sortBy: SortOption) => {
-    setCurrentSort(sortBy);
-    if (onSortChange) {
-      onSortChange(sortBy);
-    }
-  };
+  const {
+    isSortMenuOpen,
+    showValidationPopup,
+    validationMessage,
+    isInputFocused,
+    setIsInputFocused,
+    handleSearchChange,
+    handleKeyDown,
+    handleKeyUp,
+    badgeMessage,
+    placeholder,
+    toggleSortMenu,
+    setIsSortMenuOpen,
+    closeValidationPopup
+  } = useHeaderLogic({
+    onSearchChange,
+    searchValue,
+    onInputChange,
+    sort,
+  });
 
   return (
     <Fragment>
@@ -40,47 +65,58 @@ export default function HeaderPokemon({ onSortChange }: HeaderPokemonProps) {
                 className="search-icon"
               />
               <input
-                  type="text"
-                  className="search-input"
-                  placeholder="Search"
-                  aria-label="Search Pokemon"
-                  data-testid="search-input"
+                type="text"
+                className="search-input"
+                placeholder={placeholder}
+                aria-label="Search Pokemon"
+                data-testid="search-input"
+                value={searchValue}
+                onChange={handleSearchChange}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => setIsInputFocused(false)}
+                disabled={disabled}
               />
+              {isInputFocused && (
+                <div className="search-badge">{badgeMessage}</div>
+              )}
             </div>
-            <button 
-              className="filter-button" 
-              aria-label="Filter options" 
-              onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
+            <button
+              className="filter-button"
+              aria-label="Filter options"
+              onClick={toggleSortMenu}
               data-testid="filter-button"
             >
-              {
-                currentSort === 'number' 
-                ? (
-                  <img 
-                    src={vectorIcons.tagIcon} 
-                    alt="Sort Icon"
-                    className="icon-button-filter"
-                    data-testid="tag-icon"
-                  />
-                ) 
-                : (
-                  <img 
-                    src={vectorIcons.textFormatIcon} 
-                    alt="Text Format Icon"
-                    className="icon-button-filter"
-                    data-testid="text-format-icon"
-                  />
-                )
-              }
+              {sort === "number" ? (
+                <img
+                  src={vectorIcons.tagIcon}
+                  alt="Sort Icon"
+                  className="icon-button-filter"
+                  data-testid="tag-icon"
+                />
+              ) : (
+                <img
+                  src={vectorIcons.textFormatIcon}
+                  alt="Text Format Icon"
+                  className="icon-button-filter"
+                  data-testid="text-format-icon"
+                />
+              )}
             </button>
           </div>
         </div>
       </header>
       <SortMenu
         isOpen={isSortMenuOpen}
-        currentSort={currentSort}
+        currentSort={sort ?? "name"}
         onClose={() => setIsSortMenuOpen(false)}
-        onSortChange={handleSortChange}
+        onSortChange={(value) => onSortChange?.(value)}
+      />
+      <ValidationPopup
+        isOpen={showValidationPopup}
+        message={validationMessage}
+        onClose={closeValidationPopup}
       />
     </Fragment>
   );
