@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/pokemondetailStyle.css';
-import { PokemonDetailProps } from 'src/models/pokemon.interface';
 import { vectorIcons } from '../assets/index';
+import { PokemonDetailProps } from '@models/pokemon.interface';
 
 export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   id,

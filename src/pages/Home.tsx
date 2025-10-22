@@ -1,9 +1,10 @@
 
+import { usePokemons } from '@hooks/usePokemons';
 import HeaderPokemon from '../components/HeaderPokemon';
 import '../styles/homepage.css';
-import CardsPokemon from '../components/CardsPokemon';
-import { usePokemons } from '../hooks/usePokemons';
-import SkeletonCard from '../components/SkeletonCard';
+import SkeletonCard from '@components/SkeletonCard';
+import CardsPokemon from '@components/CardsPokemon';
+
 
 export const Home = () => {
 

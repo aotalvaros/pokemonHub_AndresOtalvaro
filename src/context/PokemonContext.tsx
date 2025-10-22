@@ -1,6 +1,6 @@
 import type React from "react"
 import { createContext, useCallback, useContext, useState, type ReactNode } from "react"
-import { IPokemon } from "src/models/pokemon.interface"
+import { IPokemon } from "../models/pokemon.interface"
 
 interface PokemonContextType {
   pokemons: Map<number, IPokemon>

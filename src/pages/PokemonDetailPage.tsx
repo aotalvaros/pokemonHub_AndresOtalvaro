@@ -1,14 +1,14 @@
 import type React from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { PokemonDetail } from "../components/PokemonDetail"
 import { useQuery } from "@tanstack/react-query"
-import { graphqlClient } from "../utils/graphqlClient"
-import { GET_POKEMON } from "../constants/getPokemon"
-import { usePokemonContext } from "../context/PokemonContext"
-import { transformPokemonData } from "../utils/transformPokemonData"
-import { IPokemon } from "../models/pokemon.interface"
-import { NumberPokemontosee } from "../constants/numberPokemontosee"
 import '../styles/pokemonDetailPageStyle.css'
+import { IPokemon } from "@models/pokemon.interface"
+import { usePokemonContext } from "@context/PokemonContext"
+import { graphqlClient } from "@utils/graphqlClient"
+import { GET_POKEMON } from "@constants/getPokemon"
+import { NumberPokemontosee } from "@constants/numberPokemontosee"
+import { transformPokemonData } from "@utils/transformPokemonData"
+import PokemonDetail from "@components/PokemonDetail"
 
 interface GetPokemonResponse {
   pokemon_v2_pokemon: IPokemon[]
