@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback } from 'react';
-import { SortOption } from '@components/SortMenu';
+import { useState, useCallback, useMemo } from 'react';
 import { validatePokemonSearch, type SearchType } from '@utils/validatePokemonSearch';
+import { SEARCH_CONFIGS } from '@constants/message';
+import { SortOption } from '@components/models/input.interface';
 
 interface UseHeaderLogicProps {
   searchValue?: string;
@@ -11,7 +12,7 @@ interface UseHeaderLogicProps {
 }
 
 export const useHeaderLogic = ({
-    searchValue,
+    searchValue= "",
     onInputChange,
     onSearchChange,
     sort = "name",
@@ -62,19 +63,7 @@ export const useHeaderLogic = ({
     }
   }, [onInputChange, onSearchChange]);
 
-  const badgeMessage =
-    sort === "name"
-      ? "Presione Enter para buscar por nombre"
-      : sort === "number"
-        ? "Presione Enter para buscar por número"
-        : "Presione Enter para buscar por tipo"
-
-  const placeholder =
-    sort === "name"
-      ? "Buscar por nombre..."
-      : sort === "number"
-        ? "Buscar por número (ej: 001 o #025)..."
-        : "Buscar por tipo (ej: water, fire, poison)..."
+   const searchConfig = useMemo(() => SEARCH_CONFIGS[sort], [sort]);
         
   return {
     isSortMenuOpen,
@@ -91,7 +80,11 @@ export const useHeaderLogic = ({
     handleSearchChange,
     handleKeyDown,
     handleKeyUp,
-    badgeMessage,
-    placeholder
+    
+    searchConfig: {
+      placeholder: searchConfig.placeholder,
+      badgeMessage: searchConfig.badgeMessage,
+      type: searchConfig.type,
+    },
   };
 };

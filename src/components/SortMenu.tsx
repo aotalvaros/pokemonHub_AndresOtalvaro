@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/sortMenu.css';
+import { SortOption } from './models/input.interface';
 
-export type SortOption = "number" | "name" | "type"
 
 interface SortMenuProps {
   isOpen: boolean;

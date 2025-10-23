@@ -1,10 +1,12 @@
 import "./styles/headerPokemon.css";
 import vectorIcons from "@assets/index";
 import { Fragment } from "react";
-import SortMenu, { type SortOption } from "./SortMenu";
+import SortMenu from "./SortMenu";
 import ValidationPopup from "./ValidationPopup";
 import { useHeaderLogic } from "./hooks/useHeaderLogic";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "./SearchIcon";
+import { SortOption } from "./models/input.interface";
 
 interface HeaderPokemonProps {
   searchValue?: string
@@ -25,7 +27,7 @@ export default function HeaderPokemon({
   disabled,
   searchValue,
   onInputChange,
-  sort,
+  sort = "name",
   showSearch = true,
   showSort = true,
   title = "Pokédex",
@@ -41,8 +43,7 @@ export default function HeaderPokemon({
     handleSearchChange,
     handleKeyDown,
     handleKeyUp,
-    badgeMessage,
-    placeholder,
+    searchConfig,
     toggleSortMenu,
     setIsSortMenuOpen,
     closeValidationPopup
@@ -81,7 +82,7 @@ export default function HeaderPokemon({
                 <input
                   type="text"
                   className="search-input"
-                  placeholder={placeholder}
+                  placeholder={searchConfig.placeholder}
                   aria-label="Search Pokemon"
                   data-testid="search-input"
                   value={searchValue}
@@ -93,7 +94,7 @@ export default function HeaderPokemon({
                   disabled={disabled}
                 />
                 {isInputFocused && (
-                  <div className="search-badge">{badgeMessage}</div>
+                  <div className="search-badge">{searchConfig.badgeMessage}</div>
                 )}
               </div>
               <button
@@ -102,28 +103,7 @@ export default function HeaderPokemon({
                 onClick={toggleSortMenu}
                 data-testid="filter-button"
               >
-                {sort === "number" ? (
-                  <img
-                    src={vectorIcons.tagIcon}
-                    alt="Sort Icon"
-                    className="icon-button-filter"
-                    data-testid="tag-icon"
-                  />
-                ) : sort === "type" ? (
-                  <img
-                    src={vectorIcons.sortIcon || "/placeholder.svg"}
-                    alt="Type Icon"
-                    className="icon-button-filter"
-                    data-testid="type-icon"
-                  />
-                ) : (
-                  <img
-                    src={vectorIcons.textFormatIcon}
-                    alt="Text Format Icon"
-                    className="icon-button-filter"
-                    data-testid="text-format-icon"
-                  />
-                )}
+               <SearchIcon sortType={sort!} />
               </button>
             </div>
           )}
