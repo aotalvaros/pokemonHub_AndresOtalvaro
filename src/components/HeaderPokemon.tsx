@@ -62,18 +62,18 @@ export default function HeaderPokemon({
         <div className="header-container">
           <div className="logo-section">
             {showBackButton ? (
-              <button className="back-button" onClick={() => navigate(-1)} aria-label="Volver">
+              <button className="back-button" onClick={() => navigate(-1)} aria-label="Volver" data-testid="back-button">
                 <img src={vectorIcons.arrowBack} alt="Back" className="back-icon" />
               </button>
             ) : (
-              <img src={vectorIcons.pokeball} alt="Pokeball Icon" className="pokeball-icon" />
+              <img src={vectorIcons.pokeball} alt="Pokeball Icon" className="pokeball-icon" data-testid="pokeball-icon" />
             )}
             <h1 className="logo-text">{title}</h1>
           </div>
 
           {showSearch && showSort && (
             <div className="search-container">
-              <div className="search-wrapper">
+              <div className="search-wrapper" data-testid="search-wrapper">
                 <img
                   src={vectorIcons.searchIcon}
                   alt="Search Icon"
@@ -94,7 +94,7 @@ export default function HeaderPokemon({
                   disabled={disabled}
                 />
                 {isInputFocused && (
-                  <div className="search-badge">{searchConfig.badgeMessage}</div>
+                  <div className="search-badge" data-testid='search-badge'>{searchConfig.badgeMessage}</div>
                 )}
               </div>
               <button

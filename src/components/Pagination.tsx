@@ -68,6 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         onClick={() => handlePageClick(1)}
         disabled={currentPage === 1}
         aria-label="Primera página"
+        data-testid="first-page-btn"
       >
         «
       </button>
@@ -77,6 +78,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}
         aria-label="Página anterior"
+        data-testid="prev-page-btn"
       >
         ‹
       </button>
@@ -85,7 +87,9 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         {pageNumbers.map((page, index) => {
           if (page === "...") {
             return (
-              <span key={`ellipsis-${index}`} className="pagination-ellipsis">
+              <span key={`ellipsis-${index}`} className="pagination-ellipsis" 
+                data-testid={`ellipsis-${index}`}
+              >
                 ...
               </span>
             )
@@ -96,6 +100,8 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
               key={page}
               className={`pagination-btn pagination-number ${currentPage === page ? "active" : ""}`}
               onClick={() => handlePageClick(page as number)}
+              data-testid={`page-btn-${page}`}
+              aria-label={`Página ${page}`}
             >
               {page}
             </button>
@@ -108,6 +114,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage >= totalPages}
         aria-label="Página siguiente"
+        data-testid="next-page-btn"
       >
         ›
       </button>
@@ -117,6 +124,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         onClick={() => handlePageClick(totalPages)}
         disabled={currentPage === totalPages}
         aria-label="Última página"
+        data-testid="last-page-btn"
       >
         »
       </button>

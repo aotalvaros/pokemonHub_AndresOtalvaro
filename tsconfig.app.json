@@ -34,6 +34,5 @@
       "@styles/*": ["src/styles/*"]
     }
   },
-  "types": ["jest", "node"],
   "include": ["src"]
 }

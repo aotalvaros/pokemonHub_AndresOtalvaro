@@ -77,7 +77,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
                   }
                 </IconButton>
             </section>
-            <span className="pokemon-detail-number">
+            <span className="pokemon-detail-number" data-testid="pokemon-number">
               {formatPokemonNumber(id)}
             </span>
           </div>
@@ -103,10 +103,10 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
               </svg>
             </button>
           )
-          : <div style={{ width: '40px' }}></div>
+          : <div style={{ width: '40px' }} data-testid="placeholder-div"></div>
         }
 
-           <img 
+          <img 
             src={image || "/placeholder.svg"} 
             alt={name}
             className="pokemon-detail-image"
@@ -131,7 +131,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
               </svg>
             </button>
           )
-          : <div style={{ width: '40px' }}></div>
+          : <div style={{ width: '40px' }} data-testid="placeholder-div"></div>
         }
         </div>
       </div>
@@ -156,7 +156,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
 
         <div className="about-grid">
           <div className="about-item">
-            <div className="about-value">
+            <div className="about-value" data-testid="weight">
               <img src={vectorIcons.weigthIcon} alt="Weight" />
               {formatWeight(weight)}
             </div>
@@ -164,7 +164,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
           </div>
 
           <div className="about-item">
-            <div className="about-value">
+            <div className="about-value" data-testid="height">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="about-icon">
                 <path d="M8 2V14M4 6L8 2L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -174,7 +174,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
           </div>
 
           <div className="about-item">
-            <div className="about-value moves-value">
+            <div className="about-value moves-value" data-testid="moves">
               {moves.slice(0, 2).join('\n')}
             </div>
             <div className="about-label">Moves</div>
@@ -194,10 +194,11 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
               <span 
                 className="stat-name"
                 style={{ color: themeColor }}
+                data-testid={`stat-name-${index}`}
               >
                 {stat.name}
               </span>
-              <span className="stat-value">
+              <span className="stat-value" data-testid={`stat-value-${index}`}>
                 {stat.value.toString().padStart(3, '0')}
               </span>
               <div className="stat-bar-container">
@@ -207,6 +208,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
                     width: `${(stat.value / stat.maxValue) * 100}%`,
                     backgroundColor: themeColor 
                   }}
+                  data-testid={`stat-bar-${index}`}
                 ></div>
               </div>
             </div>

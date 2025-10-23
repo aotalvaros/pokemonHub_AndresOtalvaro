@@ -1,7 +1,4 @@
-"use client"
-
 import type React from "react"
-
 import { useState, useEffect, useRef } from "react"
 
 interface LazyImageProps {
@@ -30,7 +27,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, place
         })
       },
       {
-        rootMargin: "50px", // Cargar imágenes 50px antes de que sean visibles
+        rootMargin: "50px",
       },
     )
 
@@ -65,6 +62,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, place
       alt={alt}
       className={`${className} ${isLoading ? "loading" : "loaded"}`}
       loading="lazy"
+      data-testid="lazy-image"
     />
   )
 }
