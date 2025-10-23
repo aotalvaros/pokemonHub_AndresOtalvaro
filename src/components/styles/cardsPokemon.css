@@ -43,20 +43,13 @@
 }
 
 .favorite-button {
-  position: absolute;
+  position: absolute !important;
   top: 14px;
   left: 14px;
   background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
   z-index: 2;
-  transition: transform 0.2s ease;
   width: 28px;
   height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .favorite-button:hover {
@@ -91,9 +84,30 @@
   height: 80%;
   object-fit: contain;
   position: relative;
-  z-index: 1;
+  z-index: 1; transition: opacity 0.3s ease-in-out;
 }
 
+/* Estilos para el estado de carga de imágenes */
+.pokemon-image.loading {
+  opacity: 0.5;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.pokemon-image.loaded {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
 .content-name{
     position: absolute;
     background-color: #efefef;

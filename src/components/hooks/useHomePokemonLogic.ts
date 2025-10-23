@@ -11,7 +11,7 @@ export const useHomePokemonLogic = () => {
   const [sortBy, setSortBy] = useState<SortOption>("name");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchInputValue, setSearchInputValue] = useState("")
-  const searchType = sortBy === "name" ? "name" : "number"
+  const searchType = sortBy === "name" ? "name" : sortBy === "number" ? "number" : "type"
 
   const navigate = useNavigate()
 

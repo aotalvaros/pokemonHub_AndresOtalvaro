@@ -32,7 +32,6 @@ export const Favorites: React.FC = () => {
 
   const favoritePokemons = useMemo(() => {
     const fromApi = fetchedPokemons?.pokemon_v2_pokemon || []
-    console.log("🚀 ~ Favorites ~ fromApi:", fromApi)
     return [...pokemonsFromContext, ...fromApi].sort((a, b) => a.id - b.id)
   }, [pokemonsFromContext, fetchedPokemons])
 

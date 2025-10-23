@@ -3,7 +3,7 @@ export interface ValidationResult {
   error?: string
 }
 
-export type SearchType = "name" | "number"
+export type SearchType = "name" | "number" | "type"
 
 export function validatePokemonSearch(searchValue: string, searchType: SearchType): ValidationResult {
   if (!searchValue || searchValue.trim().length === 0) {
@@ -29,7 +29,7 @@ export function validatePokemonSearch(searchValue: string, searchType: SearchTyp
         error: "El nombre no debe contener caracteres especiales ni números.",
       }
     }
-  } else {
+  }  else if (searchType === "number") {
 
     const numberValue = trimmedValue.replace("#", "")
 
@@ -46,6 +46,23 @@ export function validatePokemonSearch(searchValue: string, searchType: SearchTyp
       return {
         isValid: false,
         error: "El número debe ser mayor a 0.",
+      }
+    }
+  } else if (searchType === "type") {
+    // Verificar longitud mínima de 3 caracteres
+    if (trimmedValue.length < 3) {
+      return {
+        isValid: false,
+        error: "El tipo debe tener al menos 3 caracteres.",
+      }
+    }
+
+    // Verificar que solo contenga letras (sin caracteres especiales ni números)
+    const onlyLettersRegex = /^[a-zA-Z\s]+$/
+    if (!onlyLettersRegex.test(trimmedValue)) {
+      return {
+        isValid: false,
+        error: "El tipo debe contener solo letras (ej: water, fire, poison).",
       }
     }
   }

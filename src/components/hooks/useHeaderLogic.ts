@@ -42,7 +42,7 @@ export const useHeaderLogic = ({
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      const searchType: SearchType = sort === "name" ? "name" : "number"
+      const searchType: SearchType = sort === "name" ? "name" : sort === "number" ? "number" : "type"
       const validation = validatePokemonSearch(searchValue ?? "", searchType)
 
       if (!validation.isValid && validation.error) {
@@ -62,11 +62,20 @@ export const useHeaderLogic = ({
     }
   }, [onInputChange, onSearchChange]);
 
-   const badgeMessage =
-    sort === "name" ? "Presione Enter para buscar por nombre" : "Presione Enter para buscar por número"
+  const badgeMessage =
+    sort === "name"
+      ? "Presione Enter para buscar por nombre"
+      : sort === "number"
+        ? "Presione Enter para buscar por número"
+        : "Presione Enter para buscar por tipo"
 
-  const placeholder = sort === "name" ? "Buscar por nombre..." : "Buscar por número (ej: 001 o #025)..."
-
+  const placeholder =
+    sort === "name"
+      ? "Buscar por nombre..."
+      : sort === "number"
+        ? "Buscar por número (ej: 001 o #025)..."
+        : "Buscar por tipo (ej: water, fire, poison)..."
+        
   return {
     isSortMenuOpen,
     toggleSortMenu,

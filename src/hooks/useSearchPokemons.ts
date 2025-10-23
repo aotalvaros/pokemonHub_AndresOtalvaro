@@ -1,15 +1,13 @@
-"use client"
-
 import { useQuery } from "@tanstack/react-query"
 import { graphqlClient } from "../utils/graphqlClient"
-import { SEARCH_POKEMONS, SEARCH_POKEMONS_BY_ID } from "../constants/getPokemon"
+import { SEARCH_POKEMONS, SEARCH_POKEMONS_BY_ID, SEARCH_POKEMONS_BY_TYPE } from "../constants/getPokemon"
 import { IPokemon } from "@models/pokemon.interface"
-
+import { NumberPokemontosee } from "@constants/numberPokemontosee"
 interface SearchPokemonsResponse {
   pokemon_v2_pokemon: IPokemon[]
 }
 
-export const useSearchPokemons = (searchTerm: string, searchType: "name" | "number", enabled: boolean) => {
+export const useSearchPokemons = (searchTerm: string, searchType: "name" | "number" | "type", enabled: boolean) => {
   const searchQuery = useQuery({
     queryKey: ["searchPokemons", searchTerm, searchType],
     queryFn: () => {
@@ -17,6 +15,11 @@ export const useSearchPokemons = (searchTerm: string, searchType: "name" | "numb
         const pokemonId = Number.parseInt(searchTerm.replace("#", ""), 10)
         return graphqlClient<SearchPokemonsResponse>(SEARCH_POKEMONS_BY_ID, {
           id: pokemonId,
+        })
+      }else if (searchType === "type") {
+        return graphqlClient<SearchPokemonsResponse>(SEARCH_POKEMONS_BY_TYPE, {
+          typeName: searchTerm.toLowerCase(),
+          limit: NumberPokemontosee.MAX_POKEMON_ID,
         })
       } else {
         return graphqlClient<SearchPokemonsResponse>(SEARCH_POKEMONS, {

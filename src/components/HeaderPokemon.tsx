@@ -109,6 +109,13 @@ export default function HeaderPokemon({
                     className="icon-button-filter"
                     data-testid="tag-icon"
                   />
+                ) : sort === "type" ? (
+                  <img
+                    src={vectorIcons.sortIcon || "/placeholder.svg"}
+                    alt="Type Icon"
+                    className="icon-button-filter"
+                    data-testid="type-icon"
+                  />
                 ) : (
                   <img
                     src={vectorIcons.textFormatIcon}

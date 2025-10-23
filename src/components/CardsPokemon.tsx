@@ -5,6 +5,7 @@ import { IPokemon } from '@models/pokemon.interface';
 import { useFavorites } from '@context/FavoritesContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import { LazyImage } from "./LazyImage"
 
 interface CardsPokemonProps {
   pokemons: IPokemon[];
@@ -36,19 +37,18 @@ export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
             <span className="pokemon-number">
               {formatPokemonNumber(pokemon.id)}
             </span>
-            <button
-              className="favorite-button"
-              onClick={(e) => handleFavoriteClick(e, pokemon.id)}
-              aria-label={isFavorite(pokemon.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
-            >
-              <IconButton aria-label="delete" className={isFavorite(pokemon.id) ? "favorite-check" : "favorite-icon"}>
+            
+              <IconButton aria-label="delete" 
+                className={`favorite-button ${isFavorite(pokemon.id) ? "favorite-check" : "favorite-icon"}`} 
+                onClick={(e) => handleFavoriteClick(e, pokemon.id)}
+                >
                 <FavoriteIcon />
               </IconButton>
              
-            </button>
+            
             <div className="pokemon-image-container">
-              <img 
-                src={pokemon?.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork']?.front_default} 
+              <LazyImage
+                src={pokemon?.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork']?.front_default}
                 alt={pokemon.name}
                 className="pokemon-image"
               />
