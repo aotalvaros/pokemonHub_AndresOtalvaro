@@ -41,7 +41,7 @@ export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
               onClick={(e) => handleFavoriteClick(e, pokemon.id)}
               aria-label={isFavorite(pokemon.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
             >
-              <IconButton aria-label="delete" className={isFavorite(pokemon.id) ? "favorite-check" : "favorite-icon"} >
+              <IconButton aria-label="delete" className={isFavorite(pokemon.id) ? "favorite-check" : "favorite-icon"}>
                 <FavoriteIcon />
               </IconButton>
              

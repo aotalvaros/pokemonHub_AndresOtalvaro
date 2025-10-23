@@ -5,6 +5,8 @@ import SkeletonCard from '@components/SkeletonCard';
 import CardsPokemon from '@components/CardsPokemon';
 import { useHomePokemonLogic } from '@components/hooks/useHomePokemonLogic';
 import { useFavorites } from '@context/FavoritesContext';
+import Badge from '@mui/material/Badge';
+import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 
 export const Home = () => {
   const {
@@ -50,11 +52,9 @@ export const Home = () => {
         sort={sortBy}
       />
       {favorites.length > 0 && (
-        <div className="favorites-banner">
-          <button className="favorites-button" onClick={() => navigate("/favorites")}>
-            ⭐ Ver Favoritos ({favorites.length})
-          </button>
-        </div>
+        <Badge badgeContent={favorites.length} color="primary" className='favorites-button' onClick={() => navigate("/favorites")}>
+          <FavoriteBorderTwoToneIcon />
+        </Badge>
       )}
       <main className="main-content">
         {displayPokemons.length === 0 ? (

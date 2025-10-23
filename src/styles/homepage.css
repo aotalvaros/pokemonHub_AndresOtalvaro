@@ -63,28 +63,20 @@
 }
 
 .favorites-button {
-  width: 30%;
-  min-width: 200px;
-  padding: 14px 20px;
-  background: linear-gradient(135deg, #888885 0%, #393737 100%);
-  color: #fff;
-  border: none;
-  border-radius: 18px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+  width: max-content;
+  margin: 10px 25px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(100, 99, 94, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  cursor: pointer;
+}
+
+.favorites-button svg {
+  width: 32px;
+  height: 32px;
+  fill: #fff
 }
 
 .favorites-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(144, 81, 75, 0.4);
-  background: linear-gradient(135deg, #8d5555 0%, #5c3131 100%);
 }
 
 .favorites-button:active {

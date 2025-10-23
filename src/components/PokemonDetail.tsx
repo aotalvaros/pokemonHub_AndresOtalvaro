@@ -3,6 +3,7 @@ import './styles/pokemondetailStyle.css';
 import { PokemonDetailProps } from '@models/pokemon.interface';
 import vectorIcons from '@assets/index';
 import { IconButton } from '@mui/material';
+import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useFavorites } from '@context/FavoritesContext';
 
@@ -21,8 +22,6 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   onPrevious,
   onNext,
 }) => {
-  console.log("🚀 ~ PokemonDetail ~ id:", id)
-
   const { isFavorite, toggleFavorite } = useFavorites()
 
   const formatPokemonNumber = (id: number): string => {
@@ -63,15 +62,26 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
               className="back-icon"
             />
           </button>
-          <IconButton aria-label="delete" className={`${isFavorite(id) ? "favorite-check" : "favorite-icon"} btn-favorite`} onClick={(e) => handleFavoriteClick(e, id)} >
-            <FavoriteIcon />
-          </IconButton>
           <div className="header-title">
-            <h1 className="pokemon-detail-name">{name}</h1>
+            <section className="pokemon-detail-title">
+              <h1 className="pokemon-detail-name">{name}</h1>
+                <IconButton aria-label="Toggle favorite" 
+                  className={`${isFavorite(id) ? "btn-favorite" : "btn-icon"} `} 
+                  onClick={(e) => handleFavoriteClick(e, id)}
+                  data-testid="favorite-button"
+                >
+                  {
+                    isFavorite(id) ?
+                    <FavoriteIcon />
+                    :<FavoriteBorderTwoToneIcon />
+                  }
+                </IconButton>
+            </section>
             <span className="pokemon-detail-number">
               {formatPokemonNumber(id)}
             </span>
           </div>
+
         </div>
 
         <div className="header-image-container">

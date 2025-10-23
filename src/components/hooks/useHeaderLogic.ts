@@ -65,7 +65,7 @@ export const useHeaderLogic = ({
    const badgeMessage =
     sort === "name" ? "Presione Enter para buscar por nombre" : "Presione Enter para buscar por número"
 
-  const placeholder = sort === "name" ? "Buscar por nombre..." : "Buscar por número (ej: 25 o #025)..."
+  const placeholder = sort === "name" ? "Buscar por nombre..." : "Buscar por número (ej: 001 o #025)..."
 
   return {
     isSortMenuOpen,

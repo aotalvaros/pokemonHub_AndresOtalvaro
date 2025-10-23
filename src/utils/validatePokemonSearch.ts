@@ -6,10 +6,9 @@ export interface ValidationResult {
 export type SearchType = "name" | "number"
 
 export function validatePokemonSearch(searchValue: string, searchType: SearchType): ValidationResult {
-  // Verificar que no esté vacío
   if (!searchValue || searchValue.trim().length === 0) {
     return {
-      isValid: true, // Permitir búsqueda vacía para mostrar todos
+      isValid: true
     }
   }
 
@@ -31,6 +30,7 @@ export function validatePokemonSearch(searchValue: string, searchType: SearchTyp
       }
     }
   } else {
+
     const numberValue = trimmedValue.replace("#", "")
 
     const onlyNumbersRegex = /^\d+$/
