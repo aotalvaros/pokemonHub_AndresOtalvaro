@@ -57,6 +57,31 @@
   font-family: var(--font-family);
 }
 
+.header-title button{
+  padding: 0 8px;
+}
+
+.header-title button:hover {
+  background-color: transparent;
+}
+
+.pokemon-detail-title{
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-icon svg{
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+}
+
+.btn-favorite svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--colorAppPrimary);
+}
+
 .pokemon-detail-name {
   font-size: 32px;
   line-height: 36px;

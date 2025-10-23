@@ -70,56 +70,56 @@ export default function HeaderPokemon({
             <h1 className="logo-text">{title}</h1>
           </div>
 
-{showSearch && showSort && (
-<div className="search-container">
-            <div className="search-wrapper">
-              <img
-                src={vectorIcons.searchIcon}
-                alt="Search Icon"
-                className="search-icon"
-              />
-              <input
-                type="text"
-                className="search-input"
-                placeholder={placeholder}
-                aria-label="Search Pokemon"
-                data-testid="search-input"
-                value={searchValue}
-                onChange={handleSearchChange}
-                onKeyDown={handleKeyDown}
-                onKeyUp={handleKeyUp}
-                onFocus={() => setIsInputFocused(true)}
-                onBlur={() => setIsInputFocused(false)}
-                disabled={disabled}
-              />
-              {isInputFocused && (
-                <div className="search-badge">{badgeMessage}</div>
-              )}
+          {showSearch && showSort && (
+            <div className="search-container">
+              <div className="search-wrapper">
+                <img
+                  src={vectorIcons.searchIcon}
+                  alt="Search Icon"
+                  className="search-icon"
+                />
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder={placeholder}
+                  aria-label="Search Pokemon"
+                  data-testid="search-input"
+                  value={searchValue}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyDown}
+                  onKeyUp={handleKeyUp}
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                  disabled={disabled}
+                />
+                {isInputFocused && (
+                  <div className="search-badge">{badgeMessage}</div>
+                )}
+              </div>
+              <button
+                className="filter-button"
+                aria-label="Filter options"
+                onClick={toggleSortMenu}
+                data-testid="filter-button"
+              >
+                {sort === "number" ? (
+                  <img
+                    src={vectorIcons.tagIcon}
+                    alt="Sort Icon"
+                    className="icon-button-filter"
+                    data-testid="tag-icon"
+                  />
+                ) : (
+                  <img
+                    src={vectorIcons.textFormatIcon}
+                    alt="Text Format Icon"
+                    className="icon-button-filter"
+                    data-testid="text-format-icon"
+                  />
+                )}
+              </button>
             </div>
-            <button
-              className="filter-button"
-              aria-label="Filter options"
-              onClick={toggleSortMenu}
-              data-testid="filter-button"
-            >
-              {sort === "number" ? (
-                <img
-                  src={vectorIcons.tagIcon}
-                  alt="Sort Icon"
-                  className="icon-button-filter"
-                  data-testid="tag-icon"
-                />
-              ) : (
-                <img
-                  src={vectorIcons.textFormatIcon}
-                  alt="Text Format Icon"
-                  className="icon-button-filter"
-                  data-testid="text-format-icon"
-                />
-              )}
-            </button>
-          </div>
-)}
+          )}
           
         </div>
       </header>

@@ -67,12 +67,14 @@
   transform: scale(0.95);
 }
 
-.favorite-icon {
+.favorite-icon svg {
   filter: brightness(0) saturate(100%) invert(59%) sepia(4%) saturate(6%) hue-rotate(352deg) brightness(98%) contrast(87%);
+  fill: #666666;
 }
 
-.favorite-check  {
-  filter: brightness(0) saturate(100%) invert(14%) sepia(86%) saturate(3240%) hue-rotate(338deg) brightness(103%) contrast(90%);
+.favorite-check svg{
+  filter: brightness(0) saturate(100%) invert(12%) sepia(93%) saturate(6717%) hue-rotate(359deg) brightness(106%) contrast(113%);
+  fill: #fff
 }
 
 .pokemon-image-container {
