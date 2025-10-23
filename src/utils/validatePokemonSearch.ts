@@ -15,7 +15,7 @@ export function validatePokemonSearch(searchValue: string, searchType: SearchTyp
   const trimmedValue = searchValue.trim()
 
   if (searchType === "name") {
-    if (trimmedValue.length < 3) {
+    if (trimmedValue.length <= 2) {
       return {
         isValid: false,
         error: "El nombre debe tener al menos 3 caracteres.",

@@ -1,8 +1,8 @@
+/// <reference types="vitest" />
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path';
-
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -19,6 +19,18 @@ export default defineConfig({
       "@context": path.resolve(__dirname, "./src/context"),
       "@models": path.resolve(__dirname, "./src/models"),
       "@styles": path.resolve(__dirname, "./src/styles"),
+    },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.ts",
+    coverage: {
+      provider: "v8",
+      reporter: ["lcov", "text"],
+      reportsDirectory: "./coverage",
+      exclude: [
+        "src/**/*.interface.ts"
+      ],
     },
   },
 })

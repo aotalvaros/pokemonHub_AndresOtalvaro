@@ -31,17 +31,18 @@ export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
   
   return (
     <div className="cards-container">
-      <div className="cards-grid">
+      <div className="cards-grid" data-testid="cards-grid">
         {pokemons?.map((pokemon) => (
-          <div key={pokemon.id} className="pokemon-card" onClick={() => handleCardClick(pokemon.id)}>
-            <span className="pokemon-number">
+          <div key={pokemon.id} className="pokemon-card" onClick={() => handleCardClick(pokemon.id)} data-testid={`pokemon-card-${pokemon.id}`}>
+            <span className="pokemon-number" data-testid={`pokemon-number-${pokemon.id}`}>
               {formatPokemonNumber(pokemon.id)}
             </span>
             
               <IconButton aria-label="delete" 
                 className={`favorite-button ${isFavorite(pokemon.id) ? "favorite-check" : "favorite-icon"}`} 
                 onClick={(e) => handleFavoriteClick(e, pokemon.id)}
-                >
+                data-testid={`favorite-button-${pokemon.id}`} 
+              >
                 <FavoriteIcon />
               </IconButton>
              
