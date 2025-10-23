@@ -48,7 +48,7 @@ export const CardsPokemon: React.FC<CardsPokemonProps> = ({ pokemons }) => {
             
             <div className="pokemon-image-container">
               <LazyImage
-                src={pokemon?.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork']?.front_default}
+                src={pokemon?.pokemon_v2_pokemonsprites[0]?.sprites.other?.['official-artwork']?.front_default ?? ''}
                 alt={pokemon.name}
                 className="pokemon-image"
               />

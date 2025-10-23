@@ -1,4 +1,4 @@
-import { SortOption } from "@components/SortMenu";
+import { SortOption } from "@components/models/input.interface";
 import { NumberPokemontosee } from "@constants/numberPokemontosee";
 import { usePokemons } from "@hooks/usePokemons";
 import { useSearchPokemons } from "@hooks/useSearchPokemons";
