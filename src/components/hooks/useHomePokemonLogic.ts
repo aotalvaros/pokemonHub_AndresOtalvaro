@@ -1,73 +1,78 @@
 import { SortOption } from "@components/models/input.interface";
-import { NumberPokemontosee } from "@constants/numberPokemontosee";
-import { usePokemons } from "@hooks/usePokemons";
-import { useSearchPokemons } from "@hooks/useSearchPokemons";
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { usePaginatedPokemons } from "@hooks/usePaginatedPokemons";
+import { usePaginatedSearchPokemons } from "@hooks/usePaginatedSearchPokemons";
 
-const SEARCH_MIN_LENGTH = 3;
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useHomePokemonLogic = () => {
   const [sortBy, setSortBy] = useState<SortOption>("name");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchInputValue, setSearchInputValue] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
   const searchType = sortBy === "name" ? "name" : sortBy === "number" ? "number" : "type"
 
   const navigate = useNavigate()
+  const sortType = sortBy === "name" ? "name" : "number"
 
-  const { isLoading: isLoadingAll, pokemonData } = usePokemons(NumberPokemontosee.HOME_POKEMONS, 0);
-  const { isLoading: isSearching, searchResults } = useSearchPokemons(
-    searchTerm, 
-    searchType,
-    searchTerm.length >= SEARCH_MIN_LENGTH,
-  );
+  const {
+    isLoading: isLoadingAll,
+    pokemonData,
+    totalPages: totalPagesAll,
+  } = usePaginatedPokemons(currentPage, sortType)
 
-  const displayPokemons = useMemo(() => {
-    const dataToSort = searchTerm.length >= SEARCH_MIN_LENGTH ? searchResults : pokemonData;
+  const {
+    isLoading: isSearching,
+    searchResults,
+    totalPages: totalPagesSearch,
+  } = usePaginatedSearchPokemons(searchTerm, searchType, currentPage, searchTerm.length >= 1)
 
-    if (!dataToSort || dataToSort.length === 0) return [];
+  const isSearchActive = searchTerm.length >= 1
+  const displayPokemons = isSearchActive ? searchResults : pokemonData
+  const totalPages = isSearchActive ? totalPagesSearch : totalPagesAll
+  const isLoading = isSearchActive ? isSearching : isLoadingAll
 
-    const sorted = [...dataToSort];
-    
-    return sortBy === "name" 
-      ? sorted.sort((a, b) => a.name.localeCompare(b.name))
-      : sorted.sort((a, b) => a.id - b.id);
-  }, [pokemonData, searchResults, sortBy, searchTerm]);
 
   const handleSortChange = (newSortBy: SortOption) => {
-    setSortBy(newSortBy);
-  };
-
-  const handleSearchChange = (term: string) => {
-    setSearchTerm(term);
-  };
-
-  const clearSearch = () => {
+    setSortBy(newSortBy)
     setSearchTerm("")
     setSearchInputValue("")
-  };
+    setCurrentPage(1)
+  }
+
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term)
+    setCurrentPage(1)
+  }
 
   const handleInputChange = (value: string) => {
     setSearchInputValue(value)
   }
 
-  const isLoading = searchTerm.length >= SEARCH_MIN_LENGTH ? isSearching : isLoadingAll;
-  const hasSearchTerm = Boolean(searchTerm);
+  const handleClearSearch = () => {
+    setSearchTerm("")
+    setSearchInputValue("")
+    setCurrentPage(1)
+  }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
 
   return {
     sortBy,
     searchTerm,
     displayPokemons,
     isLoading,
-    hasSearchTerm,
     searchInputValue,
+    currentPage,
+    totalPages,
 
+    handlePageChange,
+    handleClearSearch,
     navigate,
-    setSortBy,
-    setSearchTerm,
     handleSortChange,
     handleSearchChange,
-    clearSearch,
     handleInputChange,
   };
 };
