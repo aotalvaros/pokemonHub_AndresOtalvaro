@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/sortMenu.css';
+import { SortOption } from './models/input.interface';
 
-export type SortOption = 'number' | 'name';
 
 interface SortMenuProps {
   isOpen: boolean;
@@ -27,8 +27,14 @@ export const SortMenu: React.FC<SortMenuProps> = ({
     <>
       <div className="sort-menu-overlay" onClick={onClose}></div>
       <div className="sort-menu">
-        <div className="sort-menu-header">Sort by:</div>
+        <div className="sort-menu-header">Ordenar por:</div>
         <div className="sort-menu-options">
+          <button className="sort-option" onClick={() => handleOptionClick("type")} data-testid="sort-type-option">
+            <div className={`radio-button ${currentSort === "type" ? "selected" : ""}`} data-testid="radio-type">
+              {currentSort === "type" && <div className="radio-inner"></div>}
+            </div>
+            <span className="sort-option-label">Tipo</span>
+          </button>
           <button
             className="sort-option"
             onClick={() => handleOptionClick('number')}
@@ -37,7 +43,7 @@ export const SortMenu: React.FC<SortMenuProps> = ({
             <div className={`radio-button ${currentSort === 'number' ? 'selected' : ''}`} data-testid="radio-number">
               {currentSort === 'number' && <div className="radio-inner"></div>}
             </div>
-            <span className="sort-option-label">Number</span>
+            <span className="sort-option-label">Numero</span>
           </button>
           
           <button
@@ -48,7 +54,7 @@ export const SortMenu: React.FC<SortMenuProps> = ({
             <div className={`radio-button ${currentSort === 'name' ? 'selected' : ''}`} data-testid="radio-name">
               {currentSort === 'name' && <div className="radio-inner"></div>}
             </div>
-            <span className="sort-option-label">Name</span>
+            <span className="sort-option-label">Nombre</span>
           </button>
         </div>
       </div>
