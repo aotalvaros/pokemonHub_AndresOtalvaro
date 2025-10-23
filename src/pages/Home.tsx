@@ -7,17 +7,23 @@ import { useHomePokemonLogic } from '@components/hooks/useHomePokemonLogic';
 import { useFavorites } from '@context/FavoritesContext';
 import Badge from '@mui/material/Badge';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
+import Pagination from '@components/Pagination';
+
 
 export const Home = () => {
   const {
     sortBy,
     displayPokemons,
     isLoading,
+    searchInputValue,
+    currentPage,
+    searchTerm,
+    totalPages,
+    
+    handleClearSearch,
+    handlePageChange,
     handleSortChange,
     handleSearchChange,
-    clearSearch,
-    hasSearchTerm,
-    searchInputValue,
     handleInputChange,
     navigate
   } = useHomePokemonLogic();
@@ -30,6 +36,7 @@ export const Home = () => {
         <HeaderPokemon 
           searchValue={searchInputValue}
           onInputChange={handleInputChange}
+          disabled={true}
         />
         <main className="main-content">
           <div className="cards-container-skeleton">
@@ -60,14 +67,17 @@ export const Home = () => {
         {displayPokemons.length === 0 ? (
           <div className="no-results">
             <p>No se encontraron Pokémon que coincidan con tu búsqueda.</p>
-            {hasSearchTerm && (
-              <button className="clear-search-button" onClick={clearSearch}>
+            {searchTerm && (
+              <button className="clear-search-button" onClick={handleClearSearch}>
                 Limpiar búsqueda
               </button>
             )}
           </div>
         ) : (
-          <CardsPokemon pokemons={displayPokemons} />
+         <>
+            <CardsPokemon pokemons={displayPokemons} />
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          </>
         )}
       </main>
     </div>

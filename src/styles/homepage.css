@@ -123,6 +123,67 @@
   color: #6b7280;
 }
 
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 16px;
+  margin-top: 16px;
+}
+
+.pagination-button {
+  padding: 12px 24px;
+  background-color: var(--colorAppPrimary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: var(--colorAppPrimary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
+.pagination-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-button:disabled {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.page-indicator {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1d;
+  padding: 0 16px;
+  min-width: 100px;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (width >= 54rem ) {
   .cards-container-skeleton {
     grid-template-columns: repeat(3, minmax(0, 1fr));
