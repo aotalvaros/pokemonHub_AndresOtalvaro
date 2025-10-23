@@ -10,7 +10,7 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
-    const showPages = 5 
+    const showPages = 4
     const sidePages = 2 
 
     if (totalPages <= showPages) {

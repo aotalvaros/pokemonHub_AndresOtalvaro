@@ -91,10 +91,6 @@
     gap: 0.25rem;
   }
 
-  /* Ocultar algunos números en móvil si hay muchos */
-  .pagination-numbers .pagination-number:nth-child(n + 6) {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
@@ -108,8 +104,4 @@
     font-size: 1rem;
   }
 
-  /* Mostrar menos números en pantallas muy pequeñas */
-  .pagination-numbers .pagination-number:nth-child(n + 4) {
-    display: none;
-  }
 }
