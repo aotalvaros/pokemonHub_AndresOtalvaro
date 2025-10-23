@@ -25,7 +25,7 @@ describe("LazyImage", () => {
     };
 
     beforeEach(() => {
-        mockIntersectionObserver.mockImplementation((callback, options) => ({
+        mockIntersectionObserver.mockImplementation((_, options) => ({
             observe: mockObserve,
             disconnect: mockDisconnect,
             root: null,
